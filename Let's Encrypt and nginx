@@ -1,0 +1,38 @@
+I run multiple websites on Debian Jessie using Nginx server. In order to simplify automatic certificate renewal, I have enabled ACME challenge support on all virtual hosts. Every website that I host is capable of serving following URI:
+
+http://xxx.domain.tld/.well-known/acme-challenge/xxxxxxxxxxx
+In my Nginx configuration I try to include snippets as much as possible instead of creating huge .conf files for every website. For example, every server that listens to HTTP includes following snippet at the beginning of the server definition. Please note that I have specified an explicit IPv4 address, since my server has multiple IP addresses and I need to run it on a specific address only. Your configuration might be different. So this is my listen.conf file:
+
+# ------------------------------------------------------------------------------------------------
+# Listen on primary IP address
+listen 1.2.3.4:80;
+listen [::]:80;
+
+# Include location directive for Let's Encrypt ACME Challenge
+include /etc/nginx/snippets/letsencrypt-acme-challenge.conf;
+# ------------------------------------------------------------------------------------------------
+Now what about this letsencrypt-acme-challenge.conf? As I said, I wanted all my websites to support ACME challenge, so I can get a certificate for any of them. Below is the content of the letsencrypt-acme-challenge.conf file:
+
+#############################################################################
+# Configuration file for Let's Encrypt ACME Challenge location
+# This file is already included in listen_xxx.conf files.
+# Do NOT include it separately!
+#############################################################################
+#
+# This config enables to access /.well-known/acme-challenge/xxxxxxxxxxx
+# on all our sites (HTTP), including all subdomains.
+# This is required by ACME Challenge (webroot authentication).
+# You can check that this location is working by placing ping.txt here:
+# /var/www/letsencrypt/.well-known/acme-challenge/ping.txt
+# And pointing your browser to:
+# http://xxx.domain.tld/.well-known/acme-challenge/ping.txt
+#
+# Sources:
+# https://community.letsencrypt.org/t/howto-easy-cert-generation-and-renewal-with-nginx/3491
+#
+#############################################################################
+
+# Rule for legitimate ACME Challenge requests (like /.well-known/acme-challenge/xxxxxxxxx)
+# We use ^~ here, so that we don't check other regexes (for speed-up). We actually MUST cancel
+# other regex checks, because in our other config files have regex rule that denies access to files with dotted names.
+location ^~ /.well-known/acme-challenge/ {
