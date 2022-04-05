@@ -1,0 +1,22 @@
+name: CI-CD-Pipeline-to-Server
+env:
+  SSH_USER_AND_HOST:
+  SSH_KEY:
+  CURRENT_DEPLOY_PATH:
+  
+
+
+
+on:
+  push:
+    branches: [ master ]
+    
+jobs:
+  
+  build:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Git clone repo
+      - uses: actions/checkout@v3
