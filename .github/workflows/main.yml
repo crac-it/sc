@@ -1,7 +1,6 @@
 name: CI-CD-Pipeline
-env:
-  DEPLOY_PATH: /tmp
-  BUILD_SCRIPT_OUTPUT: dist
+#env:
+  #DEPLOY_PATH: /tmp
 
 on:
   push:
