@@ -1,11 +1,4 @@
 name: CI-CD-Pipeline-to-Server
-env:
-  #SSH_USER_AND_HOST:
-  #SSH_KEY:
-  #CURRENT_DEPLOY_PATH:
-  
-
-
 
 on:
   push:
