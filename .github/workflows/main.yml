@@ -19,4 +19,4 @@ jobs:
           port: ${{ secrets.PORT }}
           
           script: |
-            rsync -avz -x .git ./ /tmp
+            rsync -avz ./ /tmp
