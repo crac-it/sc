@@ -22,6 +22,6 @@ jobs:
           
           script: |
             cd ${{ env.DEPLOY_PATH }}
-            #rsync -az ${{ env.EXIST_PATH }} ${{ env.BACKUP_PATH }}
-            #rm -rf ${{ env.EXIST_PATH }}
+            rsync -az ${{ env.EXIST_PATH }} ${{ env.BACKUP_PATH }}
+            rm -rf ${{ env.EXIST_PATH }}
             git clone git@github.com:cracit/sc.git
