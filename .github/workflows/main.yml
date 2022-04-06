@@ -1,8 +1,8 @@
 name: CI-CD-Pipeline
 env:
-  DEPLOY_PATH: /tmp
-  EXIST_PATH: /tmp/sc
-  BACKUP_PATH: /tmp/sc.backup/
+  DEPLOY_PATH: /home/tomer
+  EXIST_PATH: /home/tomer/sc
+  BACKUP_PATH: /home/tomer/sc.backup/
 
 on:
   push:
