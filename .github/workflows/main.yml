@@ -1,6 +1,6 @@
 name: CI-CD-Pipeline
 env:
-  DEPLOY_PATH: /tmp
+  DEPLOY_PATH: /tmp/releases/$CI_COMMIT_SHA
   EXIST_PATH: /tmp/sc
   BACKUP_PATH: /tmp/sc.backup/
 
