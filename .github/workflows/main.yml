@@ -1,6 +1,7 @@
 name: CI-CD-Pipeline
-#env:
-  #DEPLOY_PATH: /tmp
+env:
+  DEPLOY_PATH: /tmp
+  BACKUP_PATH: /tmp/sc.backup
 
 on:
   push:
@@ -19,6 +20,6 @@ jobs:
           #port: ${{ secrets.PORT }}
           
           script: |
-            cd /tmp
-            mv ./sc /tmp/sc.backup/
+            cd $DEPLOY_PATH
+            mv $DEPLOY_PATH /tmp/sc.backup/
             git clone git@github.com:cracit/sc.git
