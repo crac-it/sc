@@ -1,7 +1,7 @@
 name: CI-CD-Pipeline
 env:
   DEPLOY_PATH: /tmp
-  EXIST_PATH: /tmp/sc
+  EXIST_PATH: /sc
   BACKUP_PATH: /tmp/sc.backup/
 
 on:
@@ -22,5 +22,6 @@ jobs:
           
           script: |
             cd ${{ env.DEPLOY_PATH }}
-            mv ${{ env.EXIST_PATH }} ${{ env.BACKUP_PATH }}
+            rsync -a ${{ env.EXIST_PATH }} ${{ env.BACKUP_PATH }} && rm -rf ${{ env.EXIST_PATH }}
+             #mv ${{ env.EXIST_PATH }} ${{ env.BACKUP_PATH }}
             git clone git@github.com:cracit/sc.git
