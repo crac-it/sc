@@ -16,7 +16,8 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
-          port: ${{ secrets.PORT }}
+          #port: ${{ secrets.PORT }}
           
           script: |
+            cd /tmp
             git clone git@github.com:cracit/sc.git
